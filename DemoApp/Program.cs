@@ -1,32 +1,36 @@
 ﻿using System;
 using System.Configuration;
-using System.Diagnostics;
-using System.IO;
 
 namespace DemoApp
 {
   class Program
   {
+    private const int ERROR_EXIT_CODE = -1;
+
     static void Main(string[] args)
     {
       if(args.Length != 1) ExitWithError("Invalid number of arguments passed.");
 
       var nativeExePath = ConfigurationManager.AppSettings["nativeExePath"];
       if(nativeExePath == null) ExitWithError("Path to native executable wasn't specified in App.config");
-      if(!File.Exists(nativeExePath)) ExitWithError("Failed to find native executable on path " + nativeExePath);
 
-      var nativeExeProcess = Process.Start(nativeExePath, "parameter=" + args[0]);
-      if(nativeExeProcess == null) ExitWithError("Native executable wasn't started.");
-      nativeExeProcess.WaitForExit();
-      var nativeExeExitCode = nativeExeProcess.ExitCode;
-      Console.Out.WriteLine("Native executable exits with code " + nativeExeExitCode);
-      Environment.Exit(nativeExeExitCode);
+      try
+      {
+        var executable = NativeExecutable.Create(nativeExePath);
+        var nativeExeExitCode = executable.CallWithParameter(args[0]);
+        Console.Out.WriteLine("Native executable exits with code " + nativeExeExitCode);
+        Environment.Exit(nativeExeExitCode);
+      }
+      catch (Exception ex)
+      {
+        ExitWithError(ex.Message);
+      }
     }
 
     private static void ExitWithError(String errorMessage)
     {
       Console.Error.WriteLine(errorMessage);
-      Environment.Exit(-1);
+      Environment.Exit(ERROR_EXIT_CODE);
     }
   }
 }
