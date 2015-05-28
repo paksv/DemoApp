@@ -9,7 +9,7 @@ namespace DemoApp
 
     static void Main(string[] args)
     {
-      if(args.Length != 1) ExitWithError("Invalid number of arguments passed.");
+      if(args.Length != 1) ExitWithError("Invalid number of arguments passed!");
 
       var nativeExePath = ConfigurationManager.AppSettings["nativeExePath"];
       if(nativeExePath == null) ExitWithError("Path to native executable wasn't specified in App.config");
