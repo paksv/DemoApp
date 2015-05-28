@@ -9,14 +9,14 @@ namespace DemoAppTests
     [Test]
     public void CallWithValidParameterValue()
     {
-        var nativeExecutable = NativeExecutable.Create("cpp-test-repo.exe");
+        var nativeExecutable = NativeExecutable.Create(@"Target\cpp-test-repo.exe");
         Assert.AreEqual(0, nativeExecutable.CallWithParameter("test"));
     }
 
     [Test]
     public void CallWithInValidParameterValue()
     {
-        var nativeExecutable = NativeExecutable.Create("cpp-test-repo.exe");
+        var nativeExecutable = NativeExecutable.Create(@"Target\cpp-test-repo.exe");
         Assert.AreNotEqual(0, nativeExecutable.CallWithParameter("InvalidParam"));
     }
   }
