@@ -9,6 +9,7 @@ namespace DemoAppTests
     [Test]
     public void CallWithValidParameterValue()
     {
+        Assert.Fail("Fail");
 /*
         var nativeExecutable = NativeExecutable.Create(@"Release-Desktop\cpp-test-repo.exe");
         var retval = nativeExecutable.CallWithParameter("test");    
