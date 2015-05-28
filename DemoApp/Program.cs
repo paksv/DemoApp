@@ -7,7 +7,7 @@ namespace DemoApp
   {
     private const int ERROR_EXIT_CODE = -1;
 
-    static void Ma in(string[] args)
+    static void Main(string[] args)
     {
       if(args.Length != 1) ExitWithError("Invalid number of arguments passed.");
 
