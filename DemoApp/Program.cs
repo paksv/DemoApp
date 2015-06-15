@@ -5,7 +5,7 @@ namespace DemoApp
 {
   class Program
   {
-    private const int ERROR_EXIT_CODE = -2;
+    private const int ERROR_EXIT_CODE = -3;
 
     static void Main(string[] args)
     {
