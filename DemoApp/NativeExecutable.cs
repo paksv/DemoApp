@@ -15,7 +15,7 @@ namespace DemoApp
 
     public static NativeExecutable Create(String pathToExe)
     {
-      if (!File.Exists(pathToExe)) throw new ArgumentException("Failed to find native executable on path " + pathToExe );
+      if (!File.Exists(pathToExe)) throw new ArgumentException("Failed to find native executable on path " + pathToExe);
       return new NativeExecutable(pathToExe);
     }
 
