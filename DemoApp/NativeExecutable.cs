@@ -22,7 +22,7 @@ namespace DemoApp
     public int CallWithParameter(String parameterValue)
     {
       var nativeExeProcess = Process.Start(myExePath, "parameter=" + parameterValue);
-      if (nativeExeProcess == null) throw new ApplicationException("Native executable wasn't started...");
+      if (nativeExeProcess == null) throw new ApplicationException("Native executable wasn't started....");
       nativeExeProcess.WaitForExit();
       var nativeExeExitCode = nativeExeProcess.ExitCode;
       return nativeExeExitCode;
